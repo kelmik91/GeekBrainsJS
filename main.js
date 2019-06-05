@@ -11,11 +11,8 @@ admin = name;
 alert(admin);
 
 /* Задание 4
-
 Тексту - "1000108"
-
 */
-
 var one = 1000;
 var two = "108";
 var thee = one + two;
