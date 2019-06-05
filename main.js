@@ -1,6 +1,6 @@
 // Задание 1
 var temperature_celsius = +prompt("Введите температуру в цельсиях");
-var temperature_fahrenheit = (9/5)*temperature_celsius+32;
+var temperature_fahrenheit = (9/5) * temperature_celsius + 32;
 alert(temperature_celsius + " градуса Цельсия - это " + temperature_fahrenheit + " градусов по Фаренгейту");
 
 // Задание 3
