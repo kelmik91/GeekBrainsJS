@@ -1,11 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="main.js"></script>
 </head>
 <body>
+
+<script>
+    // Задание 1
+    var a = 1, b = 1, c, d;
+    c = ++a; console.log(c);      // сначала "а" увеличивается на 1, получаем а = 2. Потом присваиваем "с", полуаем с = 2
+    d = b++; console.log(d);      // сначала "b" = 1 присваивается "d", потом "b" увеливичается на 1. Получаем b = 2, d = 1
+    c = (2+ ++a); console.log(c); // поскольку "а" уже = 2 она увечивается на 1 (а = 3) и к ней прибавляется 2, получем с = 5, а = 3. Переменная "с" также была перезаписана
+    d = (2+ b++); console.log(d); // также как и на прошлой строке только "b" увеличивается на 1 после записи значения в "d". Получаем d = 4, b = 3
+    console.log(a);               //
+    console.log(b);               //
+
+    // Задание 2
+    a = 2;
+    var x;
+    x = 1 + (a *= 2);
+    // сначала выполняются действия в скобках из-за более высокого приоритета.
+    // "а" умножается на 2 и полученное значение записывается в переменную "а". а = 4
+    // после выполняется сложение 1 + 4
+    // x = 5, a = 4
+
+    // Задание 3
+    a = +prompt("Введите целочисленное значение А");
+    b = +prompt("Введите целочисленное значение B");
+    if (a >= 0 && b >= 0) {
+        c = a - b; console.log(c);
+    } else if (a < 0 && b < 0) {
+        c = a * b; console.log(c);
+    } else {
+        c = a + b; console.log(c);
+    }
+
+    // Задание 4
+    a = +prompt("Введите число от 0 до 15 включительно");
+    while (a < 0 || a >  15) {
+        a = +prompt("Неправильное значение. Введите число от 0 до 15 включительно")
+    }
+    switch (a) {
+        case 0:
+            console.log("0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 1:
+            console.log("1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 2:
+            console.log("2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 3:
+            console.log("3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 4:
+            console.log("4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 5:
+            console.log("5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 6:
+            console.log("6, 7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 7:
+            console.log("7, 8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 8:
+            console.log("8, 9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 9:
+            console.log("9, 10, 11, 12, 13, 14, 15");
+            break;
+        case 10:
+            console.log("10, 11, 12, 13, 14, 15");
+            break;
+        case 11:
+            console.log("11, 12, 13, 14, 15");
+            break;
+        case 12:
+            console.log("12, 13, 14, 15");
+            break;
+        case 13:
+            console.log("13, 14, 15");
+            break;
+        case 14:
+            console.log("14, 15");
+            break;
+        case 15:
+            console.log("15");
+            break;
+    }
+
+
+    // Задание 5
+    var result;
+    function sum(arg1, arg2) {
+        result = arg1 + arg2;
+        return result;
+    }
+    function diff(arg1, arg2) {
+        result = arg1 - arg2;
+        return result;
+    }
+    function increase(arg1, arg2) {
+        result = arg1 * arg2;
+        return result;
+    }
+    function division(arg1, arg2) {
+        result = arg1 / arg2;
+        return result;
+    }
+
+    // Задание 6
+    function mathOperation(arg1, arg2, operation) {
+        switch (operation) {
+            case sum:
+                console.log(sum(arg1, arg2));
+                break;
+            case diff:
+                console.log(diff(arg1, arg2));
+                break;
+            case increase:
+                console.log(increase(arg1, arg2));
+                break;
+            case division:
+                console.log(division(arg1, arg2));
+                break;
+        }
+    }
+    mathOperation(55, 5, sum);
+
+    // Задание 8
+    function power(val, pow) {
+        if (pow < 1) {
+            return 1;
+        }
+        return val * power(val, pow - 1);
+    }
+    var num = +prompt("Введите число которое хотите возвести в степень");
+    while (isNaN(num)) {
+        num = +prompt("Введено не число!!! Введите число которое хотите возвести в степень");
+    }
+    var degree = +prompt("Введите степень");
+    while (isNaN(degree)) {
+        degree = +prompt("Введено не число!!! Введите степень");
+    }
+    console.log(power(num, degree));
+</script>
 
 </body>
 </html>
