@@ -116,7 +116,7 @@
     function mathOperation(arg1, arg2, operation) {
         switch (operation) {
             case sum:
-                console.log(sum(arg1, arg2));
+                return sum(arg1, arg2);
                 break;
             case diff:
                 console.log(diff(arg1, arg2));
@@ -129,7 +129,7 @@
                 break;
         }
     }
-    mathOperation(55, 5, sum);
+    console.log(mathOperation(55, 5, sum));
 
     // Задание 8
     function power(val, pow) {
