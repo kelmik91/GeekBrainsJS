@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .flex {
+            display: flex;
+        }
+        .border {
+            padding-bottom: 10px;
+            border-bottom: #ff0001 1px solid;
+        }
+        .container {
+            width: 700px;
+            background-color: #ffd405;
+            padding: 50px;
+            margin: auto;
+        }
+        .itemBox {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+        p {
+            margin: 0;
+        }
+        .item__desc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            align-items: center;
+            display: flex;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="item__desc">
+    <img src="https://www.apple.com/v/iphone-xs/d/images/overview/hero_logo_large.svg" alt="logo iphone XS">
+    <img style="width: 400px;" src="https://www.apple.com/v/iphone-xs/d/images/overview/hero_bottom_device_large.jpg" alt="iPhone XS">
+    <p>130 159.00 pyб.</p>
+    <button id="button" class="button">
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg" alt="button cart">
+        Добавить в корзину
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg" alt="button cart">
+    </button>
+</div>
+<div id="cart"></div>
+
+<script>
+
+    var cart = [];
+    var iphone = {name: 'iPhone XS Gold', price: 130159, quantity: 1}
+
+    function countBasketPrice(cart) {
+        var result = 0;
+        for (var i = 0; i < cart.length; i++)
+            result += cart[i].price * cart[i].quantity;
+        return result;
+    }
+
+    function newCartPrice() {
+    var cartView = document.getElementById('cart');
+    cartView.innerHTML = '';
+    var container = document.createElement('div');
+    container.classList.add('container');
+
+    var containerItem = document.createElement('div');
+
+    var item = document.createElement('div');
+    if (cart.length !== 0) {
+        item.textContent = 'В корзине лежит: ';
+    }
+    containerItem.appendChild(item);
+
+    var itemBox = document.createElement('div');
+    var itemNameText = '';
+    for (var i = 0; i < cart.length; i++) {
+        var itemName = document.createElement('p');
+        itemNameText = ' ' + cart[i].name + ', ' + cart[i].quantity + ' шт., ' + 'стоимостью: ' + cart[i].price + ' руб. \n';
+        itemName.textContent = itemNameText;
+        itemBox.appendChild(itemName);
+    }
+    itemBox.classList.add('itemBox');
+    containerItem.appendChild(itemBox);
+    containerItem.classList.add('border', 'flex');
+
+    container.appendChild(containerItem);
+
+    var finishPrice = document.createElement('div');
+
+    var cartText;
+    if (cart == 0) {
+        cartText = 'В корзине нет товаров.'
+    } else {
+        cartText = 'В корзине: ' + i + ' товар на сумму ' + countBasketPrice(cart) + ' рублей';
+    }
+
+    finishPrice.textContent = cartText;
+    container.appendChild(finishPrice);
+    cartView.appendChild(container);
+    }
+
+    newCartPrice();
+
+    function addCart() {
+    	if (cart.length > 0) {
+    		cart[0].quantity += 1;
+    	} else {
+        	cart.push(iphone);
+        }
+
+        newCartPrice();
+    }
+
+    var button = document.getElementById('button');
+    button.addEventListener('click', addCart);
+
+</script>
+
+</body>
+</html>
