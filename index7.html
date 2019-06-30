@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Title</title>
+    <style>
+        .flex {
+            display: flex;
+        }
+        .border__cart {
+            padding-bottom: 10px;
+            border-bottom: #ff0001 1px solid;
+        }
+        .container {
+            width: 700px;
+            background-color: #ffd405;
+            padding: 50px;
+            margin: auto;
+        }
+        .itemBox {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+        p {
+            margin: 0;
+        }
+        .item__desc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            align-items: center;
+            display: flex;
+            margin-top: 10px;
+        }
+        .button__bootstrap {
+            background-color: #00c9ff;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div class="item__desc">
+    <button id="0" class="button">
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+        Добавить в корзину iPhone
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+    </button>
+    <button id="1" class="button">
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+        Добавить в корзину Samsung
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+    </button>
+    <button id="2" class="button">
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+        Добавить в корзину HTC
+        <img src="https://www.apple.com/ac/globalfooter/4/ru_RU/assets/ac-buystrip/asa/icon_dark_large.svg"
+             alt="button cart">
+    </button>
+</div>
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                    Корзина
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div id="cart" style="display:block;"></div>
+                <button class="btn btn-link collapsed button__bootstrap" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Далее
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                    Адрес доставки
+                </button>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <form action="#">
+                    <p>Адрес доставки</p>
+                    <input type="text" size="40" placeholder="Страна"><br>
+                    <input type="text" size="40" placeholder="Город"><br>
+                    <input type="text" size="40" placeholder="Улица, дом, кв"><br>
+                    <input type="tel" size="40" placeholder="Номер телефона">
+                </form>
+            </div>
+            <button class="btn btn-link collapsed button__bootstrap" type="button" data-toggle="collapse"
+                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Далее
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                    Комментарий
+                </button>
+            </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                <p>Комментарий<Br>
+                    <textarea name="comment"></textarea></p>
+            </div>
+            <button class="btn btn-link button__bootstrap" type="button" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Вернуться в корзину
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var cart = [];
+    var catalog = [{id: 0, name: 'iPhone', price: 130159, quantity: 1},
+        {id: 1, name: 'Samsung', price: 130159, quantity: 1},
+        {id: 2, name: 'HTC', price: 130159, quantity: 1}];
+
+    function countBasketPrice(cart) {
+        var result = 0;
+        for (var i = 0; i < cart.length; i++)
+            if (cart[i]) {
+                result += cart[i].price * cart[i].quantity;
+            }
+        return result;
+    }
+
+    function removeCartItem(event) {
+        if (event.target.classList.contains('remove')) {
+            var id = +event.target.dataset.id;
+            if (cart[id].quantity > 1) {
+                cart[id].quantity -= 1;
+            } else {
+                delete cart[id];
+            }
+
+            newCartPrice();
+        }
+    }
+
+    function newCartPrice() {
+        var cartView = document.getElementById('cart');
+        cartView.innerHTML = '';
+        var container = document.createElement('div');
+        container.classList.add('container');
+
+        var containerItem = document.createElement('div');
+
+        var item = document.createElement('div');
+        if (cart.length !== 0) {
+            item.textContent = 'В корзине лежит: ';
+        }
+        containerItem.appendChild(item);
+
+        var itemBox = document.createElement('div');
+        var itemNameText = '';
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i]) {
+                var itemName = document.createElement('p');
+                remove = document.createElement('button');
+                itemNameText = ' ' + cart[i].name + ', ' + cart[i].quantity + ' шт., ' + 'стоимостью: ' + cart[i].price + ' руб. \n';
+                itemName.textContent = itemNameText;
+                remove.textContent = 'Удалить ' + cart[i].name;
+                remove.dataset.id = cart[i].id;
+                remove.classList.add('remove');
+                itemBox.appendChild(itemName);
+                itemBox.appendChild(remove);
+            }
+        }
+        itemBox.classList.add('itemBox');
+        containerItem.appendChild(itemBox);
+        containerItem.classList.add('border__cart', 'flex');
+        container.appendChild(containerItem);
+
+        var finishPrice = document.createElement('div');
+        var cartText;
+        if (cart == 0) {
+            cartText = 'В корзине нет товаров.'
+        } else {
+            var quantityAll = 0;
+            for (i = 0; i < cart.length; i++) {
+                if (cart[i]) {
+                    quantityAll += cart[i].quantity;
+                }
+            }
+            cartText = 'В корзине: ' + quantityAll + ' товаров на сумму ' + countBasketPrice(cart) + ' рублей';
+        }
+        finishPrice.textContent = cartText;
+        container.appendChild(finishPrice);
+        cartView.appendChild(container);
+    }
+
+    newCartPrice();
+
+    function addCartIphone(event) {
+        var cartId = +event.target.dataset.idx;
+        if (cart[cartId]) {
+            cart[cartId].quantity += 1;
+        } else {
+            cart[cartId] = catalog[cartId];
+        }
+        newCartPrice(cartId);
+    }
+
+    var remove = document.getElementById('cart');
+    remove.addEventListener('click', removeCartItem);
+    var button = document.getElementsByClassName('button');
+    for (i = 0; i < button.length; i++) {
+        button[i].dataset.idx = i;
+        button[i].addEventListener('click', addCartIphone);
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
